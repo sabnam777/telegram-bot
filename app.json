@@ -1,0 +1,63 @@
+{
+  "name": "your-bot-name",
+  "description": "Telegram bot for movie subscriptions.",
+  "keywords": [
+    "telegram",
+    "bot",
+    "movie",
+    "subscription"
+  ],
+  "repository": "https://github.com/yourusername/your-repo.git",
+  "logo": "https://yourdomain.com/logo.png",
+  "image": "heroku/python",
+  "addons": [
+    "mongolab"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    }
+  ],
+  "env": {
+    "TOKEN": {
+      "description": "Telegram bot token.",
+      "required": true
+    },
+    "PAYMENT_TOKEN": {
+      "description": "Stripe payment provider token.",
+      "required": true
+    },
+    "PAYMENT_PROVIDER": {
+      "description": "Payment provider name.",
+      "value": "Stripe"
+    },
+    "PAYMENT_CURRENCY": {
+      "description": "Payment currency.",
+      "value": "USD"
+    },
+    "PLANS": {
+      "description": "Subscription plans in JSON format.",
+      "value": "{\"1\": {\"name\": \"15 Days\", \"price\": 35}, \"2\": {\"name\": \"1 Month\", \"price\": 59}, \"3\": {\"name\": \"6 Months\", \"price\": 199}, \"4\": {\"name\": \"1 Year\", \"price\": 99}}"
+    },
+    "MONGODB_URI": {
+      "description": "MongoDB connection URI.",
+      "required": true
+    },
+    "BOT_OWNER": {
+      "description": "Bot owner user ID.",
+      "required": true
+    },
+    "BOT_ADMINS": {
+      "description": "Comma-separated list of bot admin user IDs.",
+      "required": true
+    },
+    "LOG_LEVEL": {
+      "description": "Logging level.",
+      "value": "INFO"
+    }
+  },
+  "scripts": {
+    "start": "python main.py"
+  },
+  "stack": "heroku-20"
+}
