@@ -7,8 +7,8 @@
     "movie",
     "subscription"
   ],
-  "repository": "https://github.com/yourusername/your-repo.git",
-  "logo": "https://yourdomain.com/logo.png",
+  "repository": "https://github.com/sabnam777/telegram-bot",
+  "logo": "https://te.legra.ph/file/4d210d5db864b8fa61f4c.jpg",
   "image": "heroku/python",
   "addons": [
     "mongolab"
@@ -21,10 +21,12 @@
   "env": {
     "TOKEN": {
       "description": "Telegram bot token.",
+      "value": "6221794966:AAE_ekdthzBwT0z5mp5nJoKrCcQauCi3UdE",
       "required": true
     },
     "PAYMENT_TOKEN": {
       "description": "Stripe payment provider token.",
+      "value": "1877036958:TEST:4330e724da7a1655ee1946d5f67d6952b2fd09ba",
       "required": true
     },
     "PAYMENT_PROVIDER": {
@@ -41,14 +43,17 @@
     },
     "MONGODB_URI": {
       "description": "MongoDB connection URI.",
+      "value": "mongodb+srv://rip:123@cluster0.gf5msox.mongodb.net/?retryWrites=true&w=majority",
       "required": true
     },
     "BOT_OWNER": {
       "description": "Bot owner user ID.",
+      "value": "5143506371",
       "required": true
     },
     "BOT_ADMINS": {
       "description": "Comma-separated list of bot admin user IDs.",
+      "value": "5143506371",
       "required": true
     },
     "LOG_LEVEL": {
