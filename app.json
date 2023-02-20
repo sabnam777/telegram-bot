@@ -56,5 +56,5 @@
   "scripts": {
     "start": "python main.py"
   },
-  "stack": "heroku-20"
+  "stack": "heroku-22"
 }
