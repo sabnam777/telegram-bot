@@ -11,7 +11,7 @@
   "logo": "https://te.legra.ph/file/4d210d5db864b8fa61f4c.jpg",
   "image": "heroku/python",
   "addons": [
-    "mongolab"
+    "mongolab:sandbox"
   ],
   "buildpacks": [
     {
@@ -66,3 +66,4 @@
   },
   "stack": "heroku-20"
 }
+
