@@ -61,4 +61,21 @@ def successful_payment(update, context):
     chat_id = update.message.chat_id
     message_id = update.message.message_id
     plan_id = update.message.successful_payment.invoice_payload.split("_")[1]
-    expiry = int(time.time()) + PLANS
+    expiry = int(time.time()) + PLANS[int(plan_id) - 1]["duration"]
+    # Add code to process successful payment
+    # ...
+    
+
+def main():
+    # Create the Updater and pass it your bot's token.
+    updater = Updater(TOKEN, use_context=True)
+
+    # Get the dispatcher to register handlers
+    dp = updater.dispatcher
+
+    # Register the start command handler
+    dp.add_handler(CommandHandler("start", start))
+
+    # Register the subscription command
+
+    
