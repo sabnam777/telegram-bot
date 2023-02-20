@@ -33,19 +33,23 @@ def callback_query_handler(update, context):
     query.answer()
     plan_id, price = query.data.split("_")
     invoice_payload = f"{update.effective_user.id}_{plan_id}"
-    context.bot.send_invoice(chat_id=query.message.chat_id,
-                             title='Subscription',
-                             description=f'Subscription for {PLANS[int(plan_id) - 1]["name"]}',
-                             payload=invoice_payload,
-                             provider_token=PAYMENT_TOKEN,
-                             start_parameter='subscription',
-                             currency=PAYMENT_CURRENCY,
-                             prices=[telegram.LabeledPrice(label='Subscription', amount=int(price)*100)],
-                             need_name=True,
-                             need_phone_number=True,
-                             need_email=True,
-                             is_flexible=False)
-    
+    try:
+        context.bot.send_invoice(chat_id=query.message.chat_id,
+                                 title='Subscription',
+                                 description=f'Subscription for {PLANS[int(plan_id) - 1]["name"]}',
+                                 payload=invoice_payload,
+                                 provider_token=PAYMENT_TOKEN.get(PAYMENT_PROVIDER),
+                                 start_parameter='subscription',
+                                 currency=PAYMENT_CURRENCY.get('USD'),
+                                 prices=[telegram.LabeledPrice(label='Subscription', amount=int(price)*100)],
+                                 need_name=True,
+                                 need_phone_number=True,
+                                 need_email=True,
+                                 is_flexible=False)
+    except Exception as e:
+        logger.error(e)
+        context.bot.send_message(chat_id=query.message.chat_id, text="Sorry, there was an error processing your request. Please try again later.")
+
 # Define the invoice handler
 def precheckout_callback(update, context):
     query = update.pre_checkout_query
@@ -57,7 +61,4 @@ def successful_payment(update, context):
     chat_id = update.message.chat_id
     message_id = update.message.message_id
     plan_id = update.message.successful_payment.invoice_payload.split("_")[1]
-    expiry = int(time.time()) + PLANS[int(plan_id) - 1]['duration'] * 86400
-    context.bot.send_message(chat_id=chat_id, text=f"Thank you for subscribing to {PLANS[int(plan_id) - 1]['name']}! Your subscription will expire on {time.ctime(expiry)}.")
-    context.bot.send_message(chat_id=user_id, text=f"Thank you for subscribing to {PLANS[int(plan_id) - 1]['name']}! Please join the premium group below:")
-    context.bot.send_message(chat_id=user_id, text="https://t.me/your_premium_group_link", reply_markup=telegram.InlineKeyboardMarkup
+    expiry = int(time.time()) + PLANS
