@@ -1,31 +1,28 @@
 import os
 
-# Telegram Bot API token
-TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
+# Telegram Bot Authorization Token
+TOKEN = os.environ.get('TOKEN', 'your_token_here')
 
-# Payment provider token and credentials
-PAYMENT_PROVIDER_TOKEN = os.environ.get("PAYMENT_PROVIDER_TOKEN")
-PAYMENT_PROVIDER_NAME = os.environ.get("PAYMENT_PROVIDER_NAME")
-PAYMENT_PROVIDER_URL = os.environ.get("PAYMENT_PROVIDER_URL")
-PAYMENT_PROVIDER_CERT_PATH = os.environ.get("PAYMENT_PROVIDER_CERT_PATH")
+# Payment Token for Stripe Integration
+PAYMENT_TOKEN = os.environ.get('PAYMENT_TOKEN', 'your_payment_token_here')
 
-# Subscription plans and their respective prices
+# Payment Provider Name
+PAYMENT_PROVIDER = os.environ.get('PAYMENT_PROVIDER', 'Stripe')
+
+# Payment Currency
+PAYMENT_CURRENCY = os.environ.get('PAYMENT_CURRENCY', 'USD')
+
+# Plan Definitions
 PLANS = {
-    "1": {"name": "15 Days", "price": 35},
-    "2": {"name": "1 Month", "price": 59},
-    "3": {"name": "6 Months", "price": 199},
-    "4": {"name": "1 Year", "price": 99},
+    "1": {"name": "15 Days", "price": 35, "duration": 15},
+    "2": {"name": "1 Month", "price": 59, "duration": 30},
+    "3": {"name": "6 Months", "price": 199, "duration": 180},
+    "4": {"name": "1 Year", "price": 99, "duration": 365},
 }
 
+# Logging Configuration
+LOG_LEVEL = os.environ.get('LOG_LEVEL', 'INFO')
+
 # Bot owner and admin user IDs
-BOT_OWNER = os.environ.get("BOT_OWNER")
-BOT_ADMINS = os.environ.get("BOT_ADMINS")
-
-# Google Sheets API credentials
-GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY")
-GOOGLE_API_SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
-GOOGLE_SHEET_ID = os.environ.get("GOOGLE_SHEET_ID")
-GOOGLE_SHEET_RANGE = os.environ.get("GOOGLE_SHEET_RANGE")
-
-# Telegraph API token
-TELEGRAPH_API_TOKEN = os.environ.get("TELEGRAPH_API_TOKEN")
+BOT_OWNER = os.environ.get('BOT_OWNER', 'your_bot_owner_id_here')
+BOT_ADMINS = os.environ.get('BOT_ADMINS', 'your_bot_admins_ids_here').split(',')
