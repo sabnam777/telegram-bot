@@ -62,7 +62,7 @@ def successful_payment(update, context):
     message_id = update.message.message_id
     plan_id = update.message.successful_payment.invoice_payload.split("_")[1]
     expiry = int(time.time()) + PLANS[int(plan_id) - 1]['duration'] * 86400
-    context.bot.send_message(chat_id=chat_id, text=f"Thank you for subscribing to {PLANS[int(plan_id) - 1]['name']}! Your subscription will be active shortly.",
+    context.bot.send_message(chat_id=chat_id, text=f"Thank you for subscribing to {PLANS[int(plan_id) - 1]['name']}! Your subscription will be active shortly.")
 
 
 @dp.message_handler(lambda message: message.text == "Cancel")
