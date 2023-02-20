@@ -10,9 +10,6 @@
   "repository": "https://github.com/sabnam777/telegram-bot",
   "logo": "https://te.legra.ph/file/4d210d5db864b8fa61f4c.jpg",
   "image": "heroku/python",
-  "addons": [
-    "mongolab:sandbox"
-  ],
   "buildpacks": [
     {
       "url": "heroku/python"
@@ -41,11 +38,6 @@
       "description": "Subscription plans in JSON format.",
       "value": "{\"1\": {\"name\": \"15 Days\", \"price\": 35}, \"2\": {\"name\": \"1 Month\", \"price\": 59}, \"3\": {\"name\": \"6 Months\", \"price\": 199}, \"4\": {\"name\": \"1 Year\", \"price\": 99}}"
     },
-    "MONGODB_URI": {
-      "description": "MongoDB connection URI.",
-      "value": "mongodb+srv://rip:123@cluster0.gf5msox.mongodb.net/?retryWrites=true&w=majority",
-      "required": true
-    },
     "BOT_OWNER": {
       "description": "Bot owner user ID.",
       "value": "5143506371",
@@ -66,4 +58,3 @@
   },
   "stack": "heroku-20"
 }
-
