@@ -78,8 +78,3 @@ async def cancel_handler(message: types.Message):
 # start the bot
 if __name__ == "__main__":
     dp.start_polling()
-Make sure to replace "YOUR_TOKEN_HERE" with your actual bot token. Also, note that the dp.start_polling() function should be called inside the if __name__ == "__main__": block to make sure it only runs when the module is executed as the main program.
-
-
-
-
