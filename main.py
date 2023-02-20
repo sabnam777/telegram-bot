@@ -47,7 +47,7 @@ def callback_query_handler(update, context):
                                  need_email=True,
                                  is_flexible=False)
     except Exception as e:
-        logger.error(e)
+        logger.error(f"An error occurred while processing the callback query: {e}")
         context.bot.send_message(chat_id=query.message.chat_id, text="Sorry, there was an error processing your request. Please try again later.")
 
 # Define the invoice handler
@@ -61,21 +61,8 @@ def successful_payment(update, context):
     chat_id = update.message.chat_id
     message_id = update.message.message_id
     plan_id = update.message.successful_payment.invoice_payload.split("_")[1]
-    expiry = int(time.time()) + PLANS[int(plan_id) - 1]["duration"]
-    # Add code to process successful payment
-    # ...
-    
+    expiry = int(time.time()) + PLANS[int(plan_id) - 1]['duration'] * 86400
+    context.bot.send_message(chat_id=chat_id, text=f"Thank you for subscribing to {PLANS[int(plan_id) - 1]['name']}! Your subscription will be valid until {time.ctime(expiry)}.")
 
-def main():
-    # Create the Updater and pass it your bot's token.
-    updater = Updater(TOKEN, use_context=True)
-
-    # Get the dispatcher to register handlers
-    dp = updater.dispatcher
-
-    # Register the start command handler
-    dp.add_handler(CommandHandler("start", start))
-
-    # Register the subscription command
-
-    
+# Define the error handler
+def error(update
