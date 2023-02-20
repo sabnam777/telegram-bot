@@ -4,6 +4,7 @@ import time
 import telegram
 from telegram.ext import Updater, CommandHandler, CallbackQueryHandler, MessageHandler, Filters
 from config import TOKEN, PAYMENT_TOKEN, PAYMENT_PROVIDER, PAYMENT_CURRENCY, PLANS
+from aiogram import Bot, Dispatcher, types
 
 # Enable logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -65,11 +66,20 @@ def successful_payment(update, context):
     context.bot.send_message(chat_id=chat_id, text=f"Thank you for subscribing to {PLANS[int(plan_id) - 1]['name']}! Your subscription will be active shortly.")
 
 
+# create a new dispatcher instance
+dp = Dispatcher(bot)
+
+# define a message handler
 @dp.message_handler(lambda message: message.text == "Cancel")
 async def cancel_handler(message: types.Message):
-    await message.answer("Cancelled", reply_markup=types.ReplyKeyboardRemove())
+    # handle the "Cancel" message here
+    pass
 
-
+# start the bot
 if __name__ == "__main__":
-    loop.run_until_complete(init())
-    LOGGER.info("Stopping  Bot...")
+    dp.start_polling()
+Make sure to replace "YOUR_TOKEN_HERE" with your actual bot token. Also, note that the dp.start_polling() function should be called inside the if __name__ == "__main__": block to make sure it only runs when the module is executed as the main program.
+
+
+
+
